@@ -17,22 +17,23 @@
 \title{LOS \'INDICES DE COLOMBIA}
 % autores
 \renewcommand\Authand{, y }
-\author[1]{\normalsize MACQUEEN - SANTIAGO SERRANO}
+\author[1]{\normalsize Santiago Serrano}
 
 
 \affil[1,2]{\small  Escuela de Ingenier\'ia,Universidad de los Andes\\
-\texttt{{delcurso,deallado}@uniandes.edu.col}}
+\texttt{{s.serrano11}@uniandes.edu.col}}
 \affil[1]{\small Instituto de altas investigaciones financieras\\
 Banco del Parque\\
 \texttt{delcurso@bp.com.col}}
 
-\date{30 de Junio de 2018}
+\date{05 de Julio de 2018}
 
 %%%%
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
 \maketitle
+
 
 
 \begin{abstract}
@@ -56,29 +57,31 @@ En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice
 
 <<getData, echo=FALSE>>=
 # carga de datos
+library(stargazer)
+# NO OLVIDAR set working directory
+
 filename="colombia.csv"
 colb=read.csv(filename, stringsAsFactors = FALSE)
-library(RColorBrewer)
-library(classInt)
+
+
+#str(colb)
+#dim(colb)
+@
+
+Para conocer el comportamiento de las variables se ha preparado  donde se describe la distribuci\'on de las modalidades de cada variable. Los n\'umeros representan la situaci\'on de algun pa\'is en ese indicador, donde el mayor valor num\'erico es la mejor situaci\'on.
+
+
+
+<<summary, results=tex,echo=FALSE>>=
 library(reporttools)
 library(xtable)
-library(stargazer)
-library(corrplot)
-library(rgdal)
-library(cluster)
 
+vars1<- colb[,c(1:5)]
+stargazer(vars1,title = "Medidas estadísticas", label = "stats", summary.stat = c("mean","sd","max","min","median"))
 
 @
 
-Para conocer el comportamiento de las variables se ha preparado  la Tabla \ref{stas} donde se describe la distribuci\'on de las modalidades de cada variable. Los n\'umeros representan la situaci\'on de algun pa\'is en ese indicador, donde el mayor valor num\'erico es la mejor situaci\'on.
-
-	<<results=tex,echo=FALSE>>=
-titulo <- "Tablas de estadisticos de regiones en Colombia"
-vars1 <- colb[]
-stargazer(vars1,title = "Medidas Estadísticas", label = "Estadísticas",summary.stat = c("n","mean","median","min","max"))
-@
-
-% Como apreciamos en la Tabla \ref{Tfrecuencias}, los pa\'ises en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
+Como apreciamos en  los pa\'ises en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
 
 \clearpage
 
@@ -89,90 +92,131 @@ Para resaltar lo anterior, tenemos la Figura \ref{barplots} en la p\'agina \page
 \begin{figure}[h]
 \centering
 
-<<barplots, echo=FALSE,fig=TRUE>>=
+<<hist, echo=FALSE,fig=T,width=10,height=7>>=
 par(mfrow=c(2,2))
-title='Histograma IDH'
-paleta='yellow'
-demoTableRelPlot=hist(colb$IDH,main=title,col=paleta)
 ###
-title='Histograma de la Población Cabecera'
-paleta='green'
-demoTableRelPlot=hist(as.numeric(colb[,3]),main=title,col=paleta)
+hist(colb$IDH,main="Histograma IDH",ylab="Frecuencia",col="BLUE")
 ###
-title='Histograma de la Población Cabecera'
-paleta='red'
-demoTableRelPlot=hist(as.numeric(colb[,4]),main=title,col=paleta)
+hist(colb[,3],main="Histograma P. Cabecera",ylab="Frecuencia",col="BLUE")
 ###
-title='Histograma de la Población Total'
-paleta='blue'
-demoTableRelPlot=hist(as.numeric(colb[,5]),main=title,col=paleta)
+hist(colb[,4],main="Histograma P. Restante",ylab="Frecuencia",col="BLUE")
+
+
 @
 
 
-Debido al sesgo de las poblaciones sera necesario transformalas para que se acerquen a la normalidad y poder examinar bien.
 
-\begin{adjustbox}{width=9cm,height=3cm,clip,trim=1.5cm 0.5cm 0cm 1.5cm}
-
-	<<barplots, echo=FALSE,fig=TRUE>>=
-col$cabeLog=log(as.numeric(colb[,3]))
-col$cabeLog=log(as.numeric(colb[,4]))
-col$cabeLog=log(as.numeric(colb[,5]))
-par(mfrow=c(1,3))
-###
-title='Histograma de la Población Cabecera'
-paleta='green'
-demoTableRelPlot=hist(as.numeric(colb[,7]),main=title,col=paleta)
-###
-title='Histograma de la Población Cabecera'
-paleta='red'
-demoTableRelPlot=hist(as.numeric(colb[,8]),main=title,col=paleta)
-###
-title='Histograma de la Población Total(Log)'
-paleta='blue'
-demoTableRelPlot=hist(as.numeric(colb[,9]),main=title,col=paleta)
-@
-
-\end{adjustbox}
 \caption{Distribuci\'on de Indicadores}
 \label{barplots}
 \end{figure}
-\clearpage
 
+Adem\'as de la distribuci\'on de los variable, es importante saber el valor central. Como los valores son de naturaleza ordinal debemos pedir la {\bf mediana} y otras medidas de posici\'on (como los \emph{cuartiles}, los que no pediremos pues son pocos valores). La mediana de cada variable la mostramos enn la p\'agina.
+
+
+#<<log, echo=FALSE,fig=TRUE>>=
+
+# dado el sesgo de las pobaciones, 
+# podriamos transformarla para que se acerque a la 
+# normalidad
+#par(mfrow=c(2,2))
+###
+colb$cabeLog=log(colb[,3])
+colb$restoLog=log(colb[,4])
+
+
+hist(log(colb$poblacion.cabecera),main="Logaritmo de la poblacion",ylab="Frecuencia", col="RED")
+###
+hist(colb$cabeLog,main="Logaritomo de la poblacion cabecera",ylab="Frecuencia",col="RED")
+###
+hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col="RED")
+###
+
+#hist(colb$cabeLog)
+#hist(colb$restoLog)
+@
+
+
+#<<summary, fig=TRUE, echo=false>>==
+# dado el sesgo de las pobaciones, 
+# podriamos transformarla para que se acerque a la 
+# normalidad
+
+par(mfrow=c(2,2))
+
+colb$cabeLog=log(colb$poblacion.cabecera)
+colb$restoLog=log(colb$poblacion.resto)
+
+title='Logaritmo de la población de cabecera'
+paleta='red'
+demoTableRelPlot=hist(colb$cabeLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
+
+title='Logaritmo  de la población restante'
+paleta='red'
+demoTableRelPlot=hist(colb$restoLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
+
+#hist(colb$cabeLog)
+#hist(colb$restoLog)
+@
+
+
+\caption{Histogramas de los logaritmos}
+\label{histogramasLog}
+\end{figure}
+
+\clearpage
 
 \section{Exploraci\'on Bivariada}
 
-En este trabajo estamos interesados en el impacto de la poblaci\'on total en el IDH, veamos a contnuaci\'on el IDH con cada uno de ellos:
+En este trabajo estamos interesados en el impacto de los otros indices en el nivel de Democracia. Veamos las relaciones bivariadas que tiene esta variable con todas las dem\'as:
 
-	<<corrDem, results=tex, echo=FALSE>>=
-explanans=names(colb)[c(7:9)]
+#<<corrDem, results=tex, echo=FALSE>>=
+
+library(stargazer)
+explanans=names(colb)[c(7:8)] # usando las logs
 corrDem=cor(colb$IDH,colb[,explanans],
-use = "na.or.complete")
+            use = "na.or.complete")
 
-stargazer(corrDem, title="Correlación de Democracia con las demás variables",label = "corrDem")
+stargazer(corrDem )
+
 @
 
+<<corrDem,results=tex, echo=FALSE>>=
+explanans=names(colb)[c(7:8)]
+corrDem=cor(colb$IDH,colb[,explanans],use="na.or.complete")
+stargazer(corrDem,title="Correlacion de IDH con las demas variables",label="corrDem")
+exists("colb")
+@
 
 Veamos la correlaci\'on entre las variables independientes:
 
 
-	<<corrTablex, results=tex, echo=FALSE>>=
+<<corrTableX, results=tex, echo=FALSE>>=
+# y la correlación entre las variables independientes:
+
 corrTableX=round(cor(colb[,explanans],
-use = "na.or.complete"),2)
+                         use = "na.or.complete"),2)
 corrTableX_copy=corrTableX
 corrTableX[upper.tri(corrTableX)]<-""
-stargazer(corrTableX, title="Correlación de Democracia con las demás variables",label = "corrTablex")
+
+#ver:
+#corrTableX
+
+#visualmente
+
+stargazer(corrTableX,title="Correlación entre las variables independientes")
 @
 
-Lo visto en la Tabla \ref{corrTableX} se refuerza claramente en la Figura \ref{corrPlotX}.
+Lo visto en la Tabla 1 se refuerza claramente en la Figura \ref{corrPlotX}.
 
 \begin{figure}[h]
 \centering
 \begin{adjustbox}{width=7cm,height=7cm,clip,trim=1.5cm 0.5cm 0cm 1.5cm}
 
-	<<verCorr, echo=false, fig=true>>=
-plot(colb[,explanans], main = "Figura Logaritmos", ylab="Resto", xlab="Cabecera")
+<<corrPlotX, echo=FALSE,fig=TRUE>>=
+library(corrplot)
+corrplot(corrTableX_copy, type = "lower", diag = F,
+         addCoef.col = "black")
 @
-
 \end{adjustbox}
 \caption{correlaci\'on entre predictores}
 \label{corrPlotX}
@@ -186,15 +230,14 @@ plot(colb[,explanans], main = "Figura Logaritmos", ylab="Resto", xlab="Cabecera"
 Finalmente, vemos los modelos propuestos. Primero sin la libertad mundial como independiente, y luego con est\'a. Los resultados se muestran en la Tabla \ref{regresiones} de la p\'agina \pageref{regresiones}.
 
 <<regresiones, echo=FALSE>>=
-LinRegA = lm(IDH ~ ., data = colb[c(1,7)])
-LinRegB = lm(IDH ~ ., data = colb[c(1,7:9)])
+LinRegA = lm(IDH ~ ., data = colb[,c(1,7)])
+LinRegB = lm(IDH ~ ., data = colb[,c(1,7:8)])
+stargazer(LinRegA,LinRegB,title="Modelos de Regresión",label="regresiones")
 @
 
-Soluci\'on
-
 <<regresionesPlot,results=tex, echo=false>>=
-
-stargazer(LinRegA,LinRegB,title= "modelos de regresion",label="regresiones")
+#summary(LinRegA)
+#summary(LinRegB)
 
 @
 
@@ -209,49 +252,99 @@ Como acabamos de ver en la Tabla \ref{regresiones} en la p\'agina \pageref{regre
 As\'i, propongo que calculemos conglomerados de pa\'ises usando toda la informaci\'on de tres de los indicadores. Como nuestras variables son ordinales utilizaremos un proceso de conglomeraci\'on donde las distancia ser\'an calculadas usando la medida {\bf gower} propuestas en \cite{gower_general_1971}, y para los enlazamientos usaremos la t\'ecnica de {\bf medoides} seg\'un \cite{reynolds_clustering_2006}. Los tres conglomerados se muestran en la Figura \ref{clustmap}.
 
 <<getMap, echo=FALSE,results=hide>>=
+# Exploración Espacial ----------------------------------------------------
+
+#Calculemos conglomerados de regiones,
+#usando toda la información de las tres variables.
+# usaremos la tecnica de k-means propuesta por MacQueen.
+
+
+library(rgdal)
 folder='COL_maps'
 file='COL_adm1.shp'
 mapaFile=file.path(folder,file)
 mapCol <- rgdal::readOGR(mapaFile,stringsAsFactors=F) 
+
+# lo tenemos:
 plot(mapCol)
+
+# veamos que variables hay:
+
 head(mapCol@data)
+
+# con esto hagamos el merge:
 sub_colb=colb[,c(1:2,7:8)]
 mapCol_idh=merge(mapCol,sub_colb, by.x='NAME_1', by.y='Departamento',all.x=F)
+
+# cuantas regiones me quedaron luego del merge?
 nrow(mapCol_idh)  # todas!!...
 
-@
 
+# preparacion para clusterizar:
 
-<<echo=FALSE>>=
+# que tengo?:
 names(mapCol_idh)
+# nombre de la variables que usaré:
 dimensions=c("NAME_1","IDH","cabeLog","restoLog")
+
+# creo un nuevo data frame con esas:
 dataCluster=mapCol_idh@data[,c(dimensions)]
+
+# como la data es numerica la normalizo (menos la column 1):
 dataCluster[,-1]=scale(dataCluster[,-1])
 
+## APLICANDO TECNICA KMEANS
+
+# calculo 3 clusters
+
+resultado=kmeans(dataCluster[,-1],3)
+
+#creo data frame con los clusters:
+clusters=as.data.frame(resultado$cluster)
+
+# añado columna con nombre de regiones
+clusters$NAME_1=dataCluster$NAME_1
+names(clusters)=c('cluster','NAME_1')
+#hago el merge hacia el mapa:
+mapCol_idh=merge(mapCol_idh,clusters, by='NAME_1',all.x=F)
+
+# lo tengo?
+names(mapCol_idh)
+
+## a pintar:
+
+library(RColorBrewer)
+library(classInt)
+
+#variable a colorear
+varToPLot=mapCol_idh$cluster
+
+# decidir color:
+unique(varToPLot)
+aggregate(mapCol_idh@data[,c(10,11,12)],
+          by=list(mapCol_idh@data$cluster),FUN=mean)
+
 @
+
+
+
+
 
 
 \begin{figure}[h]
 \centering
-%\begin{adjustbox}{width=11cm,height=8cm,clip,trim=1cm 2.5cm 0cm 2.5cm}
 
 <<plotMap1, echo=FALSE, fig=TRUE>>=
-resultado=kmeans(dataCluster[,-1],3)
-clusters=as.data.frame(resultado$cluster)
-clusters$NAME_1=dataCluster$NAME_1
-names(clusters)=c('cluster','NAME_1')
-mapCol_idh=merge(mapCol_idh,clusters, by='NAME_1',all.x=F)
-names(mapCol_idh)
-library(RColorBrewer)
-library(classInt)
-varToPLot=mapCol_idh$cluster
-unique(varToPLot)
-aggregate(mapCol_idh@data[,c(10,11,12)],
-          by=list(mapCol_idh@data$cluster),FUN=mean)
+
+#preparo colores
 numberOfClasses = length(unique(varToPLot)) 
 colorForScale='Set2'
 paleta = brewer.pal(numberOfClasses, colorForScale)
+
+# grafico mapa basico
 plot(mapCol,col='grey',border=0)
+
+# grafico mapa cluster
 plot(mapCol_idh, col = paleta[varToPLot],border=F,add=T)
 legend('left', legend = c("LOW","UP","MEDIUM"),
        fill = paleta, 
@@ -261,13 +354,12 @@ legend('left', legend = c("LOW","UP","MEDIUM"),
 
 @
 
-%\end{adjustbox}
-\caption{Paises conglomerados segun sus indicadores sociopol\'iticos}\label{clustmap}
+\caption{Mapa del IDH}
+\label{map}
 \end{figure}
-%
-\clearpage
+
 \bibliographystyle{abbrv}
-\renewcommand{\refname}{Bibliography}
-\bibliography{Colombia}
+\renewcommand{\refname}{Bibliografía}
+\bibliography{Proyecto}
 
 \end{document}
