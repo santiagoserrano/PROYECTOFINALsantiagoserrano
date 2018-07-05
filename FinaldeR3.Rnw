@@ -124,10 +124,10 @@ colb$restoLog=log(colb[,4])
 
 #hist(colb$IDH,main="Logaritmo de la poblacion",ylab="Frecuencia", col="YELLOW")
 ###
-hist(colb$cabeLog,main="Logaritomo de la poblacion cabecera",ylab="Frecuencia",col="YELLOW")
+hist(colb$cabeLog,main="Logaritomo de la P. Cabecera",ylab="Frecuencia",col="YELLOW")
 ###
 
-hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col="YELLOW")
+hist(colb$restoLog,main="Logaritmo de la P. Resto",ylab="Frecuencia",col="YELLOW")
 ###
 
 #hist(colb$cabeLog)
@@ -172,7 +172,7 @@ corrTableX[upper.tri(corrTableX)]<-""
 
 #visualmente
 
-stargazer(corrTableX,title="Correlaci\'on entre las variables independientes")
+stargazer(corrTableX,title="Correlacion entre las variables independientes")
 @
 
 Lo visto en la Tabla \ref{regresiones} se refuerza claramente en la Figura \ref{corrPlotX}.
@@ -210,7 +210,7 @@ LinRegB = lm(IDH ~ ., data = colb[,c(1,7:8)])
 <<regresionesPlot,results=tex, echo=false>>=
 #summary(LinRegA)
 #summary(LinRegB)
-stargazer(LinRegA,LinRegB,title="Modelos de Regresi\'on",label="regresiones")
+stargazer(LinRegA,LinRegB,title="Modelos de Regresion",label="regresiones")
 @
 
 
