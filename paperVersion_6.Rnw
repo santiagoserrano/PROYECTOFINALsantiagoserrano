@@ -207,6 +207,7 @@ LinRegB = lm(Democracy ~ ., data = dataidx[,c(2:5)])
 stargazer(LinRegA,LinRegB,
           title = "Modelos de Regresi??n", 
           label = "regresiones")
+
 @
 
 Como se vi?? en la Tabla \ref{regresiones}, cuando est?? presente el \emph{indice de libertad mundial}, el \emph{??ndice de libertad de prensa} pierde significancia.
@@ -262,6 +263,7 @@ legend('left', legend = c("MEDIUM","LOW","UP"), # third change
        cex = 0.6, 
        bty = "n",
        title="conglomerado")
+
 @
 \end{adjustbox}
 \caption{Paises conglomerados segun sus indicadores sociopol??ticos}\label{clustmap}

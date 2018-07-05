@@ -1,0 +1,273 @@
+\documentclass{article}
+
+%%%%
+% PLOTS mapas y conglomerados
+% bibliografia
+%%%%
+\usepackage[T1]{fontenc} %%%
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+\usepackage{authblk}
+\usepackage{adjustbox}
+
+
+
+\usepackage{natbib}
+
+\title{LOS \'INDICES DE COLOMBIA}
+% autores
+\renewcommand\Authand{, y }
+\author[1]{\normalsize MACQUEEN - SANTIAGO SERRANO}
+
+
+\affil[1,2]{\small  Escuela de Ingenier\'ia,Universidad de los Andes\\
+\texttt{{delcurso,deallado}@uniandes.edu.col}}
+\affil[1]{\small Instituto de altas investigaciones financieras\\
+Banco del Parque\\
+\texttt{delcurso@bp.com.col}}
+
+\date{30 de Junio de 2018}
+
+%%%%
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+
+\begin{abstract}
+El proposito principal de este trabajo es describir los procesos para partir una poblacion N-dimensional en partes de k tamano en forma de una muestra. El proceso, que se denomina 'k-means' aparece para dar particiones que son rasonablemente eficientes en el sentido de las variables dentro de las categorias. Eso es, que si p es la probabilidad de densidad para la poblacion S, S=s1,s2,...,Sn. La parte de En y de ui siendo i=1,2,3,..,k es el promedio condicional de p sobre S. Diremos de ahora en adelante en el documento 'tiende a ser bajo' para referirnos en principio a las consideraciones intuitivas y corroboradas del analisis matematico y practicas computacionales.
+\end{abstract}
+
+\section*{Introducci\'on}
+
+The main purpose of this paper is to descrube a procces for partitioning an N-dimensional population into k sets on the basis of a sample. Th procvess, which is called 'k-means', appears to five partitions which are reasonably effcient in the sense of within-class variance. That is, if p is the probability mass functon for the population, S= S1,S2,..,Sn is a partition of En. We say 'tends to be low' primarily because of intutive considerations, corroborated to some extent by mthematical analysis and practical computational experience.
+
+
+Comencemos viendo que hay en la secci\'on \ref{univariada} en la p\'agina \pageref{univariada}.
+
+\clearpage
+
+
+
+\section{Exploraci\'on Univariada}\label{univariada}
+
+En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'on exploro cada \'indice. En esta secci\'`n exploro cada \'indice. En esta secci\'on exploro cada \'indice.
+
+<<getData, echo=FALSE>>=
+# carga de datos
+filename="colombia.csv"
+colb=read.csv(filename, stringsAsFactors = FALSE)
+library(RColorBrewer)
+library(classInt)
+library(reporttools)
+library(xtable)
+library(stargazer)
+library(corrplot)
+library(rgdal)
+library(cluster)
+
+
+@
+
+Para conocer el comportamiento de las variables se ha preparado  la Tabla \ref{stas} donde se describe la distribuci\'on de las modalidades de cada variable. Los n\'umeros representan la situaci\'on de algun pa\'is en ese indicador, donde el mayor valor num\'erico es la mejor situaci\'on.
+
+	<<results=tex,echo=FALSE>>=
+titulo <- "Tablas de estadisticos de regiones en Colombia"
+vars1 <- colb[]
+stargazer(vars1,title = "Medidas Estadísticas", label = "Estadísticas",summary.stat = c("n","mean","median","min","max"))
+@
+
+% Como apreciamos en la Tabla \ref{Tfrecuencias}, los pa\'ises en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
+
+\clearpage
+
+Para resaltar lo anterior, tenemos la Figura \ref{barplots} en la p\'agina \pageref{barplots}. 
+
+
+%%%%% figure
+\begin{figure}[h]
+\centering
+
+<<barplots, echo=FALSE,fig=TRUE>>=
+par(mfrow=c(2,2))
+title='Histograma IDH'
+paleta='yellow'
+demoTableRelPlot=hist(colb$IDH,main=title,col=paleta)
+###
+title='Histograma de la Población Cabecera'
+paleta='green'
+demoTableRelPlot=hist(as.numeric(colb[,3]),main=title,col=paleta)
+###
+title='Histograma de la Población Cabecera'
+paleta='red'
+demoTableRelPlot=hist(as.numeric(colb[,4]),main=title,col=paleta)
+###
+title='Histograma de la Población Total'
+paleta='blue'
+demoTableRelPlot=hist(as.numeric(colb[,5]),main=title,col=paleta)
+@
+
+
+Debido al sesgo de las poblaciones sera necesario transformalas para que se acerquen a la normalidad y poder examinar bien.
+
+\begin{adjustbox}{width=9cm,height=3cm,clip,trim=1.5cm 0.5cm 0cm 1.5cm}
+
+	<<barplots, echo=FALSE,fig=TRUE>>=
+col$cabeLog=log(as.numeric(colb[,3]))
+col$cabeLog=log(as.numeric(colb[,4]))
+col$cabeLog=log(as.numeric(colb[,5]))
+par(mfrow=c(1,3))
+###
+title='Histograma de la Población Cabecera'
+paleta='green'
+demoTableRelPlot=hist(as.numeric(colb[,7]),main=title,col=paleta)
+###
+title='Histograma de la Población Cabecera'
+paleta='red'
+demoTableRelPlot=hist(as.numeric(colb[,8]),main=title,col=paleta)
+###
+title='Histograma de la Población Total(Log)'
+paleta='blue'
+demoTableRelPlot=hist(as.numeric(colb[,9]),main=title,col=paleta)
+@
+
+\end{adjustbox}
+\caption{Distribuci\'on de Indicadores}
+\label{barplots}
+\end{figure}
+\clearpage
+
+
+\section{Exploraci\'on Bivariada}
+
+En este trabajo estamos interesados en el impacto de la poblaci\'on total en el IDH, veamos a contnuaci\'on el IDH con cada uno de ellos:
+
+	<<corrDem, results=tex, echo=FALSE>>=
+explanans=names(colb)[c(7:9)]
+corrDem=cor(colb$IDH,colb[,explanans],
+use = "na.or.complete")
+
+stargazer(corrDem, title="Correlación de Democracia con las demás variables",label = "corrDem")
+@
+
+
+Veamos la correlaci\'on entre las variables independientes:
+
+
+	<<corrTablex, results=tex, echo=FALSE>>=
+corrTableX=round(cor(colb[,explanans],
+use = "na.or.complete"),2)
+corrTableX_copy=corrTableX
+corrTableX[upper.tri(corrTableX)]<-""
+stargazer(corrTableX, title="Correlación de Democracia con las demás variables",label = "corrTablex")
+@
+
+Lo visto en la Tabla \ref{corrTableX} se refuerza claramente en la Figura \ref{corrPlotX}.
+
+\begin{figure}[h]
+\centering
+\begin{adjustbox}{width=7cm,height=7cm,clip,trim=1.5cm 0.5cm 0cm 1.5cm}
+
+	<<verCorr, echo=false, fig=true>>=
+plot(colb[,explanans], main = "Figura Logaritmos", ylab="Resto", xlab="Cabecera")
+@
+
+\end{adjustbox}
+\caption{correlaci\'on entre predictores}
+\label{corrPlotX}
+\end{figure}
+
+
+\clearpage
+
+\section{Modelos de Regresi\'on}
+
+Finalmente, vemos los modelos propuestos. Primero sin la libertad mundial como independiente, y luego con est\'a. Los resultados se muestran en la Tabla \ref{regresiones} de la p\'agina \pageref{regresiones}.
+
+<<regresiones, echo=FALSE>>=
+LinRegA = lm(IDH ~ ., data = colb[c(1,7)])
+LinRegB = lm(IDH ~ ., data = colb[c(1,7:9)])
+@
+
+Soluci\'on
+
+<<regresionesPlot,results=tex, echo=false>>=
+
+stargazer(LinRegA,LinRegB,title= "modelos de regresion",label="regresiones")
+
+@
+
+Como se vi\'o en la Tabla \ref{regresiones}, cuando est\'a presente el \emph{indice de libertad mundial}, el \emph{\'indice de libertad de prensa} pierde significancia.
+
+\clearpage
+
+\section{Exploraci\'on Espacial}
+
+Como acabamos de ver en la Tabla \ref{regresiones} en la p\'agina \pageref{regresiones}, si quisieras sintetizar la multidimensionalidad de nuestros indicadores, podr\'iamos usar tres de las cuatro variables que tenemos (un par de las originales tiene demasiada correlaci\'on). 
+
+As\'i, propongo que calculemos conglomerados de pa\'ises usando toda la informaci\'on de tres de los indicadores. Como nuestras variables son ordinales utilizaremos un proceso de conglomeraci\'on donde las distancia ser\'an calculadas usando la medida {\bf gower} propuestas en \cite{gower_general_1971}, y para los enlazamientos usaremos la t\'ecnica de {\bf medoides} seg\'un \cite{reynolds_clustering_2006}. Los tres conglomerados se muestran en la Figura \ref{clustmap}.
+
+<<getMap, echo=FALSE,results=hide>>=
+folder='COL_maps'
+file='COL_adm1.shp'
+mapaFile=file.path(folder,file)
+mapCol <- rgdal::readOGR(mapaFile,stringsAsFactors=F) 
+plot(mapCol)
+head(mapCol@data)
+sub_colb=colb[,c(1:2,7:8)]
+mapCol_idh=merge(mapCol,sub_colb, by.x='NAME_1', by.y='Departamento',all.x=F)
+nrow(mapCol_idh)  # todas!!...
+
+@
+
+
+<<echo=FALSE>>=
+names(mapCol_idh)
+dimensions=c("NAME_1","IDH","cabeLog","restoLog")
+dataCluster=mapCol_idh@data[,c(dimensions)]
+dataCluster[,-1]=scale(dataCluster[,-1])
+
+@
+
+
+\begin{figure}[h]
+\centering
+%\begin{adjustbox}{width=11cm,height=8cm,clip,trim=1cm 2.5cm 0cm 2.5cm}
+
+<<plotMap1, echo=FALSE, fig=TRUE>>=
+resultado=kmeans(dataCluster[,-1],3)
+clusters=as.data.frame(resultado$cluster)
+clusters$NAME_1=dataCluster$NAME_1
+names(clusters)=c('cluster','NAME_1')
+mapCol_idh=merge(mapCol_idh,clusters, by='NAME_1',all.x=F)
+names(mapCol_idh)
+library(RColorBrewer)
+library(classInt)
+varToPLot=mapCol_idh$cluster
+unique(varToPLot)
+aggregate(mapCol_idh@data[,c(10,11,12)],
+          by=list(mapCol_idh@data$cluster),FUN=mean)
+numberOfClasses = length(unique(varToPLot)) 
+colorForScale='Set2'
+paleta = brewer.pal(numberOfClasses, colorForScale)
+plot(mapCol,col='grey',border=0)
+plot(mapCol_idh, col = paleta[varToPLot],border=F,add=T)
+legend('left', legend = c("LOW","UP","MEDIUM"),
+       fill = paleta, 
+       cex = 0.6, 
+       bty = "n",
+       title="conglomerado")
+
+@
+
+%\end{adjustbox}
+\caption{Paises conglomerados segun sus indicadores sociopol\'iticos}\label{clustmap}
+\end{figure}
+%
+\clearpage
+\bibliographystyle{abbrv}
+\renewcommand{\refname}{Bibliography}
+\bibliography{Colombia}
+
+\end{document}
