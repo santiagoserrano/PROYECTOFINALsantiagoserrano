@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  29 JUN 2018 19:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 JUL 2018 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**FinaldeR.tex
-(./FinaldeR.tex
+**FinaldeR3.tex
+(./FinaldeR3.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -339,28 +339,27 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-)))) (./FinaldeR.aux)
-\openout1 = `FinaldeR.aux'.
+)))) (./FinaldeR3.aux)
+\openout1 = `FinaldeR3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 33.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 31.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    ... okay on input line 31.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -431,144 +430,135 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(./FinaldeR-concordance.tex)
+(./FinaldeR3-concordance.tex)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 36.
+(Font)              <7> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 36.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 36.
+(Font)              <5> on input line 34.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 34.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 36.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 36.
- [1
+) [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `Tfrecuencias' on page 2 undefined on input line 59.
-
-
-LaTeX Warning: Reference `Tfrecuencias' on page 2 undefined on input line 62.
+Overfull \hbox (5.11792pt too wide) in paragraph at lines 67--78
+ [][] 
+ []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 62.
+(Font)              <8> on input line 79.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 79.
 [2
 
 ]
-<FinaldeR-barplots.pdf, id=24, 433.62pt x 433.62pt>
-File: FinaldeR-barplots.pdf Graphic file (type pdf)
-<use FinaldeR-barplots.pdf>
-Package pdftex.def Info: FinaldeR-barplots.pdf  used on input line 73.
+<FinaldeR3-hist.pdf, id=22, 722.7pt x 505.89pt>
+File: FinaldeR3-hist.pdf Graphic file (type pdf)
+<use FinaldeR3-hist.pdf>
+Package pdftex.def Info: FinaldeR3-hist.pdf  used on input line 90.
+(pdftex.def)             Requested size: 276.00105pt x 193.19737pt.
+<FinaldeR3-log.pdf, id=23, 433.62pt x 433.62pt>
+File: FinaldeR3-log.pdf Graphic file (type pdf)
+<use FinaldeR3-log.pdf>
+Package pdftex.def Info: FinaldeR3-log.pdf  used on input line 101.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
 
-LaTeX Warning: Reference `stats' on page 3 undefined on input line 79.
+! LaTeX Error: \caption outside float.
 
-
-LaTeX Warning: Reference `stats' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Reference `corrTableX' on page 3 undefined on input line 96.
-
-<FinaldeR-corrPlotX.pdf, id=25, 433.62pt x 433.62pt>
-File: FinaldeR-corrPlotX.pdf Graphic file (type pdf)
-<use FinaldeR-corrPlotX.pdf>
-Package pdftex.def Info: FinaldeR-corrPlotX.pdf  used on input line 102.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 \caption
+              {Figure 2: Histogramas de los logaritmos (transformaci\'on)}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 [3
 
- <./FinaldeR-barplots.pdf>] [4 <./FinaldeR-corrPlotX.pdf>]
-
-LaTeX Warning: Reference `regresiones' on page 5 undefined on input line 113.
-
-
-LaTeX Warning: Reference `regresiones' on page 5 undefined on input line 113.
-
-
-Overfull \hbox (3.38014pt too wide) in paragraph at lines 135--138
-[]\T1/aer/m/n/10 Residuals: Min 1Q Me-dian 3Q Max -0.09489 -0.02041 0.00433 0.0
-1740 0.06372 
- []
+ <./FinaldeR3-hist.pdf>]
+! Too many }'s.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.108 \end{figure}
+                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
 
 
-LaTeX Warning: Reference `regresiones' on page 5 undefined on input line 150.
+! LaTeX Error: \begin{document} ended by \end{figure}.
 
-[5
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.108 \end{figure}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.108 \end{figure}
+                  
+Things are pretty mixed up, but I think the worst is over.
+
+[4 <./FinaldeR3-log.pdf>]
+<FinaldeR3-corrPlotX.pdf, id=43, 433.62pt x 433.62pt>
+File: FinaldeR3-corrPlotX.pdf Graphic file (type pdf)
+<use FinaldeR3-corrPlotX.pdf>
+Package pdftex.def Info: FinaldeR3-corrPlotX.pdf  used on input line 156.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [5
+
+ <./FinaldeR3-corrPlotX.pdf>] [6
 
 ]
-
-LaTeX Warning: Reference `regresiones' on page 6 undefined on input line 156.
-
-
-LaTeX Warning: Reference `regresiones' on page 6 undefined on input line 156.
-
-
-Package natbib Warning: Citation `gower_general_1971' on page 6 undefined on in
-put line 158.
-
-
-Package natbib Warning: Citation `reynolds_clustering_2006' on page 6 undefined
- on input line 158.
-
-<FinaldeR-plotMap1.pdf, id=49, 433.62pt x 433.62pt>
-File: FinaldeR-plotMap1.pdf Graphic file (type pdf)
-<use FinaldeR-plotMap1.pdf>
-Package pdftex.def Info: FinaldeR-plotMap1.pdf  used on input line 191.
+<FinaldeR3-plotMap1.pdf, id=58, 433.62pt x 433.62pt>
+File: FinaldeR3-plotMap1.pdf Graphic file (type pdf)
+<use FinaldeR3-plotMap1.pdf>
+Package pdftex.def Info: FinaldeR3-plotMap1.pdf  used on input line 224.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(./FinaldeR.bbl
+ (./FinaldeR3.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
-)
+) [7
 
-Package natbib Warning: There were undefined citations.
-
-[6
-
-] [7 <./FinaldeR-plotMap1.pdf>] (./FinaldeR.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+ <./FinaldeR3-plotMap1.pdf>] (./FinaldeR3.aux) ) 
 Here is how much of TeX's memory you used:
- 4227 strings out of 492649
- 61530 string characters out of 6129622
- 121879 words of memory out of 5000000
+ 4226 strings out of 492649
+ 61560 string characters out of 6129622
+ 122433 words of memory out of 5000000
  7959 multiletter control sequences out of 15000+600000
- 41509 words of font info for 83 fonts, out of 8000000 for 9000
+ 41020 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,37p,709b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
-usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
-r/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/l
-ocal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
-al/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
-/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/t
-exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
-ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
-/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
-18/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2018/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2018/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on FinaldeR.pdf (7 pages, 746780 bytes).
+ 41i,9n,37p,689b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2018/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2018/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmtt9.pfb>
+Output written on FinaldeR3.pdf (7 pages, 732083 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
+ 119 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 20 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

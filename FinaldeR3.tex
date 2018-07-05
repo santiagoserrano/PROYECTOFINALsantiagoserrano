@@ -21,10 +21,8 @@
 
 
 \affil[1,2]{\small  Escuela de Ingenier\'ia,Universidad de los Andes\\
-\texttt{{s.serrano11}@uniandes.edu.col}}
-\affil[1]{\small Instituto de altas investigaciones financieras\\
-Banco del Parque\\
-\texttt{delcurso@bp.com.col}}
+\texttt{{s.serrano11}@uniandes.edu.co}}
+
 
 \date{05 de Julio de 2018}
 
@@ -62,23 +60,23 @@ Para conocer el comportamiento de las variables se ha preparado  donde se descri
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Jul 05, 2018 - 16:16:14
+% Date and time: Thu, Jul 05, 2018 - 17:07:38
 \begin{table}[!htbp] \centering 
-  \caption{Medidas estad<U+00ED>sticas} 
+  \caption{Medidas estad'isticas} 
   \label{stats} 
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Median} \\ 
+Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Min} \\ 
 \hline \\[-1.8ex] 
-IDH & 0.802 & 0.042 & 0.879 & 0.691 & 0.804 \\ 
-Poblaci..n.Cabecera & 1,196,730.000 & 1,982,287.000 & 10,070,801 & 13,090 & 717,197 \\ 
-Poblaci..n.Resto & 360,590.300 & 331,887.600 & 1,428,858 & 21,926 & 268,111.5 \\ 
-Poblaci..n.Total & 1,557,320.000 & 2,202,522.000 & 10,985,285 & 43,446 & 1,028,429 \\ 
+IDH & 0.802 & 0.042 & 0.879 & 0.691 \\ 
+Poblaci..n.Cabecera & 1,196,730.000 & 1,982,287.000 & 10,070,801 & 13,090 \\ 
+Poblaci..n.Resto & 360,590.300 & 331,887.600 & 1,428,858 & 21,926 \\ 
+Poblaci..n.Total & 1,557,320.000 & 2,202,522.000 & 10,985,285 & 43,446 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table} 
-Como apreciamos en  los pa\'ises en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
+Como apreciamos en  las regiones de Colombia en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
 
 \clearpage
 
@@ -93,58 +91,19 @@ Para resaltar lo anterior, tenemos la Figura \ref{barplots} en la p\'agina \page
 
 
 
-\caption{Distribuci\'on de Indicadores}
+\caption{Histograma de Indicadores por categor\'ia}
 \label{barplots}
 \end{figure}
 
 Adem\'as de la distribuci\'on de los variable, es importante saber el valor central. Como los valores son de naturaleza ordinal debemos pedir la {\bf mediana} y otras medidas de posici\'on (como los \emph{cuartiles}, los que no pediremos pues son pocos valores). La mediana de cada variable la mostramos enn la p\'agina.
 
 
-#<<log, echo=FALSE,fig=TRUE>>=
-
-# dado el sesgo de las pobaciones, 
-# podriamos transformarla para que se acerque a la 
-# normalidad
-#par(mfrow=c(2,2))
-###
-colb$cabeLog=log(colb[,3])
-colb$restoLog=log(colb[,4])
+\includegraphics{FinaldeR3-log}
 
 
-hist(log(colb$poblacion.cabecera),main="Logaritmo de la poblacion",ylab="Frecuencia", col="RED")
-###
-hist(colb$cabeLog,main="Logaritomo de la poblacion cabecera",ylab="Frecuencia",col="RED")
-###
-hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col="RED")
-###
-
-#hist(colb$cabeLog)
-#hist(colb$restoLog)
 
 
-#<<summary, fig=TRUE, echo=false>>==
-# dado el sesgo de las pobaciones, 
-# podriamos transformarla para que se acerque a la 
-# normalidad
-
-par(mfrow=c(2,2))
-
-colb$cabeLog=log(colb$poblacion.cabecera)
-colb$restoLog=log(colb$poblacion.resto)
-
-title='Logaritmo de la poblaci<U+00F3>n de cabecera'
-paleta='red'
-demoTableRelPlot=hist(colb$cabeLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
-
-title='Logaritmo  de la poblaci<U+00F3>n restante'
-paleta='red'
-demoTableRelPlot=hist(colb$restoLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
-
-#hist(colb$cabeLog)
-#hist(colb$restoLog)
-
-
-\caption{Histogramas de los logaritmos}
+\caption{Figure 2: Histogramas de los logaritmos (transformaci\'on)}
 \label{histogramasLog}
 \end{figure}
 
@@ -152,15 +111,124 @@ demoTableRelPlot=hist(colb$restoLog,main=title,col=paleta,xlab='',ylab = "Frecue
 
 \section{Exploraci\'on Bivariada}
 
-En este trabajo estamos interesados en el impacto de los otros indices en el nivel de Democracia. Veamos las relaciones bivariadas que tiene esta variable con todas las dem\'as:
-
-#<<corrDem, results=tex, echo=FALSE>>=
-
-library(stargazer)
-explanans=names(colb)[c(7:8)] # usando las logs
-corrDem=cor(colb$IDH,colb[,explanans],
-            use = "na.or.complete")
-
-stargazer(corrDem )
+En este trabajo estamos interesados en el impacto de los otros indices en el nivel de Desarrollo Veamos las relaciones bivariadas que tiene esta variable con todas las dem\'as:
 
 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Jul 05, 2018 - 17:07:38
+\begin{table}[!htbp] \centering 
+  \caption{Correlacion de IDH con las demas variables} 
+  \label{corrDem} 
+\begin{tabular}{@{\extracolsep{5pt}} cc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+cabeLog & restoLog \\ 
+\hline \\[-1.8ex] 
+$0.487$ & $0.177$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+Veamos la correlaci\'on entre las variables independientes:
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Jul 05, 2018 - 17:07:38
+\begin{table}[!htbp] \centering 
+  \caption{Correlaci'on entre las variables independientes} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & cabeLog & restoLog \\ 
+\hline \\[-1.8ex] 
+cabeLog & 1 &  \\ 
+restoLog & 0.84 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+Lo visto en la Tabla \ref{regresiones} se refuerza claramente en la Figura \ref{corrPlotX}.
+
+\begin{figure}[h]
+\centering
+\begin{adjustbox}{width=7cm,height=7cm,clip,trim=1.5cm 0.5cm 0cm 1.5cm}
+
+\includegraphics{FinaldeR3-corrPlotX}
+\end{adjustbox}
+\caption{correlaci\'on entre predictores}
+\label{corrPlotX}
+\end{figure}
+
+
+\clearpage
+
+\section{Modelos de Regresi\'on}
+
+El an\'alisis de regresi\'on se usa en estad\'istica para calcular las relaciones entre variables. Generalmente en una variable dependiente y varias independientes.
+
+Los resultados se muestran en la Tabla \ref{regresiones} de la p\'agina \pageref{regresiones}.
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Jul 05, 2018 - 17:07:38
+\begin{table}[!htbp] \centering 
+  \caption{Modelos de Regresi'on} 
+  \label{regresiones} 
+\begin{tabular}{@{\extracolsep{5pt}}lcc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-3} 
+\\[-1.8ex] & \multicolumn{2}{c}{IDH} \\ 
+\\[-1.8ex] & (1) & (2)\\ 
+\hline \\[-1.8ex] 
+ cabeLog & 0.013$^{***}$ & 0.031$^{***}$ \\ 
+  & (0.004) & (0.007) \\ 
+  & & \\ 
+ restoLog &  & $-$0.030$^{***}$ \\ 
+  &  & (0.010) \\ 
+  & & \\ 
+ Constant & 0.634$^{***}$ & 0.766$^{***}$ \\ 
+  & (0.055) & (0.065) \\ 
+  & & \\ 
+\hline \\[-1.8ex] 
+Observations & 32 & 32 \\ 
+R$^{2}$ & 0.238 & 0.425 \\ 
+Adjusted R$^{2}$ & 0.212 & 0.385 \\ 
+Residual Std. Error & 0.037 (df = 30) & 0.033 (df = 29) \\ 
+F Statistic & 9.347$^{***}$ (df = 1; 30) & 10.706$^{***}$ (df = 2; 29) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+
+\clearpage
+
+\section{Exploraci\'on Espacial}
+
+Para realizar la Exploraci\'on Espacial se utilizar\'a la t\'ecnica de k-means propuesta por McQueen [1] para identificar congloremerados de las regiones de Colombia de la siguiente forma:
+
+Se dividi\'o el mapa de Colombia en un conjunto de n observaciones en k grupos. De esta forma se quiere dividir el mapa en tres categor\'ias dependiendo del valor medio del desarrollo. Se clasificaron en tres categor\'ias: alto, medio y bajo.
+
+
+
+
+
+
+
+\begin{figure}[h]
+\centering
+
+\includegraphics{FinaldeR3-plotMap1}
+
+\caption{Mapa del IDH}
+\label{map}
+\end{figure}
+
+\bibliographystyle{abbrv}
+\renewcommand{\refname}{Bibliograf\'ia}
+\bibliography{Proyecto}
+
+\end{document}

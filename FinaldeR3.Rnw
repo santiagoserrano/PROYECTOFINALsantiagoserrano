@@ -21,10 +21,8 @@
 
 
 \affil[1,2]{\small  Escuela de Ingenier\'ia,Universidad de los Andes\\
-\texttt{{s.serrano11}@uniandes.edu.col}}
-\affil[1]{\small Instituto de altas investigaciones financieras\\
-Banco del Parque\\
-\texttt{delcurso@bp.com.col}}
+\texttt{{s.serrano11}@uniandes.edu.co}}
+
 
 \date{05 de Julio de 2018}
 
@@ -77,11 +75,11 @@ library(reporttools)
 library(xtable)
 
 vars1<- colb[,c(1:5)]
-stargazer(vars1,title = "Medidas estadísticas", label = "stats", summary.stat = c("mean","sd","max","min","median"))
+stargazer(vars1,title = "Medidas estad\'isticas", label = "stats", summary.stat = c("mean","sd","max","min"))
 
 @
 
-Como apreciamos en  los pa\'ises en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
+Como apreciamos en  las regiones de Colombia en la mejor situaci\'on son los menos, salvo en el caso del \emph{\'indice de libertas mundial}\footnote{N\'otese que esto se puede deber a la {\bf menor} cantidad de categor\'ias.}
 
 \clearpage
 
@@ -100,35 +98,36 @@ hist(colb$IDH,main="Histograma IDH",ylab="Frecuencia",col="BLUE")
 hist(colb[,3],main="Histograma P. Cabecera",ylab="Frecuencia",col="BLUE")
 ###
 hist(colb[,4],main="Histograma P. Restante",ylab="Frecuencia",col="BLUE")
-
-
+###
+hist(colb[,5],main="Histograma P. Total",ylab="Frecuencia",col="BLUE")
 @
 
 
 
-\caption{Distribuci\'on de Indicadores}
+\caption{Histograma de Indicadores por categor\'ia}
 \label{barplots}
 \end{figure}
 
 Adem\'as de la distribuci\'on de los variable, es importante saber el valor central. Como los valores son de naturaleza ordinal debemos pedir la {\bf mediana} y otras medidas de posici\'on (como los \emph{cuartiles}, los que no pediremos pues son pocos valores). La mediana de cada variable la mostramos enn la p\'agina.
 
 
-#<<log, echo=FALSE,fig=TRUE>>=
+<<log, echo=FALSE,fig=TRUE>>=
 
 # dado el sesgo de las pobaciones, 
 # podriamos transformarla para que se acerque a la 
 # normalidad
-#par(mfrow=c(2,2))
+par(mfrow=c(2,1))
 ###
 colb$cabeLog=log(colb[,3])
 colb$restoLog=log(colb[,4])
 
 
-hist(log(colb$poblacion.cabecera),main="Logaritmo de la poblacion",ylab="Frecuencia", col="RED")
+#hist(colb$IDH,main="Logaritmo de la poblacion",ylab="Frecuencia", col="YELLOW")
 ###
-hist(colb$cabeLog,main="Logaritomo de la poblacion cabecera",ylab="Frecuencia",col="RED")
+hist(colb$cabeLog,main="Logaritomo de la poblacion cabecera",ylab="Frecuencia",col="YELLOW")
 ###
-hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col="RED")
+
+hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col="YELLOW")
 ###
 
 #hist(colb$cabeLog)
@@ -136,30 +135,9 @@ hist(colb$restoLog,main="Logaritmo de la poblacion resto",ylab="Frecuencia",col=
 @
 
 
-#<<summary, fig=TRUE, echo=false>>==
-# dado el sesgo de las pobaciones, 
-# podriamos transformarla para que se acerque a la 
-# normalidad
-
-par(mfrow=c(2,2))
-
-colb$cabeLog=log(colb$poblacion.cabecera)
-colb$restoLog=log(colb$poblacion.resto)
-
-title='Logaritmo de la población de cabecera'
-paleta='red'
-demoTableRelPlot=hist(colb$cabeLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
-
-title='Logaritmo  de la población restante'
-paleta='red'
-demoTableRelPlot=hist(colb$restoLog,main=title,col=paleta,xlab='',ylab = "Frecuencia")
-
-#hist(colb$cabeLog)
-#hist(colb$restoLog)
-@
 
 
-\caption{Histogramas de los logaritmos}
+\caption{Figure 2: Histogramas de los logaritmos (transformaci\'on)}
 \label{histogramasLog}
 \end{figure}
 
@@ -167,24 +145,15 @@ demoTableRelPlot=hist(colb$restoLog,main=title,col=paleta,xlab='',ylab = "Frecue
 
 \section{Exploraci\'on Bivariada}
 
-En este trabajo estamos interesados en el impacto de los otros indices en el nivel de Democracia. Veamos las relaciones bivariadas que tiene esta variable con todas las dem\'as:
+En este trabajo estamos interesados en el impacto de los otros indices en el nivel de Desarrollo Veamos las relaciones bivariadas que tiene esta variable con todas las dem\'as:
 
-#<<corrDem, results=tex, echo=FALSE>>=
 
-library(stargazer)
-explanans=names(colb)[c(7:8)] # usando las logs
-corrDem=cor(colb$IDH,colb[,explanans],
-            use = "na.or.complete")
-
-stargazer(corrDem )
-
-@
 
 <<corrDem,results=tex, echo=FALSE>>=
 explanans=names(colb)[c(7:8)]
 corrDem=cor(colb$IDH,colb[,explanans],use="na.or.complete")
 stargazer(corrDem,title="Correlacion de IDH con las demas variables",label="corrDem")
-exists("colb")
+
 @
 
 Veamos la correlaci\'on entre las variables independientes:
@@ -203,10 +172,10 @@ corrTableX[upper.tri(corrTableX)]<-""
 
 #visualmente
 
-stargazer(corrTableX,title="Correlación entre las variables independientes")
+stargazer(corrTableX,title="Correlaci\'on entre las variables independientes")
 @
 
-Lo visto en la Tabla 1 se refuerza claramente en la Figura \ref{corrPlotX}.
+Lo visto en la Tabla \ref{regresiones} se refuerza claramente en la Figura \ref{corrPlotX}.
 
 \begin{figure}[h]
 \centering
@@ -214,8 +183,9 @@ Lo visto en la Tabla 1 se refuerza claramente en la Figura \ref{corrPlotX}.
 
 <<corrPlotX, echo=FALSE,fig=TRUE>>=
 library(corrplot)
-corrplot(corrTableX_copy, type = "lower", diag = F,
-         addCoef.col = "black")
+
+plot(colb[,explanans],xlab= "Logaritmo P. Cabecera", ylab="Logaritmo de P. Restante")
+
 @
 \end{adjustbox}
 \caption{correlaci\'on entre predictores}
@@ -227,29 +197,31 @@ corrplot(corrTableX_copy, type = "lower", diag = F,
 
 \section{Modelos de Regresi\'on}
 
-Finalmente, vemos los modelos propuestos. Primero sin la libertad mundial como independiente, y luego con est\'a. Los resultados se muestran en la Tabla \ref{regresiones} de la p\'agina \pageref{regresiones}.
+El an\'alisis de regresi\'on se usa en estad\'istica para calcular las relaciones entre variables. Generalmente en una variable dependiente y varias independientes.
+
+Los resultados se muestran en la Tabla \ref{regresiones} de la p\'agina \pageref{regresiones}.
 
 <<regresiones, echo=FALSE>>=
 LinRegA = lm(IDH ~ ., data = colb[,c(1,7)])
 LinRegB = lm(IDH ~ ., data = colb[,c(1,7:8)])
-stargazer(LinRegA,LinRegB,title="Modelos de Regresión",label="regresiones")
+
 @
 
 <<regresionesPlot,results=tex, echo=false>>=
 #summary(LinRegA)
 #summary(LinRegB)
-
+stargazer(LinRegA,LinRegB,title="Modelos de Regresi\'on",label="regresiones")
 @
 
-Como se vi\'o en la Tabla \ref{regresiones}, cuando est\'a presente el \emph{indice de libertad mundial}, el \emph{\'indice de libertad de prensa} pierde significancia.
+
 
 \clearpage
 
 \section{Exploraci\'on Espacial}
 
-Como acabamos de ver en la Tabla \ref{regresiones} en la p\'agina \pageref{regresiones}, si quisieras sintetizar la multidimensionalidad de nuestros indicadores, podr\'iamos usar tres de las cuatro variables que tenemos (un par de las originales tiene demasiada correlaci\'on). 
+Para realizar la Exploraci\'on Espacial se utilizar\'a la t\'ecnica de k-means propuesta por McQueen [1] para identificar congloremerados de las regiones de Colombia de la siguiente forma:
 
-As\'i, propongo que calculemos conglomerados de pa\'ises usando toda la informaci\'on de tres de los indicadores. Como nuestras variables son ordinales utilizaremos un proceso de conglomeraci\'on donde las distancia ser\'an calculadas usando la medida {\bf gower} propuestas en \cite{gower_general_1971}, y para los enlazamientos usaremos la t\'ecnica de {\bf medoides} seg\'un \cite{reynolds_clustering_2006}. Los tres conglomerados se muestran en la Figura \ref{clustmap}.
+Se dividi\'o el mapa de Colombia en un conjunto de n observaciones en k grupos. De esta forma se quiere dividir el mapa en tres categor\'ias dependiendo del valor medio del desarrollo. Se clasificaron en tres categor\'ias: alto, medio y bajo.
 
 <<getMap, echo=FALSE,results=hide>>=
 # Exploración Espacial ----------------------------------------------------
@@ -359,7 +331,7 @@ legend('left', legend = c("LOW","UP","MEDIUM"),
 \end{figure}
 
 \bibliographystyle{abbrv}
-\renewcommand{\refname}{Bibliografía}
+\renewcommand{\refname}{Bibliograf\'ia}
 \bibliography{Proyecto}
 
 \end{document}
