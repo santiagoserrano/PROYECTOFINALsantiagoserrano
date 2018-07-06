@@ -184,7 +184,7 @@ Lo visto en la Tabla \ref{regresiones} se refuerza claramente en la Figura \ref{
 <<corrPlotX, echo=FALSE,fig=TRUE>>=
 library(corrplot)
 
-plot(colb[,explanans],xlab= "Logaritmo P. Cabecera", ylab="Logaritmo de P. Restante")
+plot(colb[,explanans])
 
 @
 \end{adjustbox}
@@ -331,7 +331,9 @@ legend('left', legend = c("LOW","UP","MEDIUM"),
 \end{figure}
 
 \bibliographystyle{abbrv}
-\renewcommand{\refname}{Bibliograf\'ia}
-\bibliography{Proyecto}
+\renewcommand{\refname}{Bibliografia}
+\bibliography{bibliografia}
+\cite{bibliografia}
+
 
 \end{document}

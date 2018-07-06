@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 JUL 2018 17:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 JUL 2018 00:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -142,8 +142,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count99
-)
-(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Sweave.sty
+) (./Sweave.sty
 Package: Sweave 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
@@ -527,14 +526,22 @@ Package pdftex.def Info: FinaldeR3-plotMap1.pdf  used on input line 224.
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
-) [7
+)
+
+Package natbib Warning: Citation `bibliografia' on page 7 undefined on input li
+ne 233.
+
+
+Package natbib Warning: There were undefined citations.
+
+[7
 
  <./FinaldeR3-plotMap1.pdf>] (./FinaldeR3.aux) ) 
 Here is how much of TeX's memory you used:
- 4226 strings out of 492649
- 61560 string characters out of 6129622
- 122433 words of memory out of 5000000
- 7959 multiletter control sequences out of 15000+600000
+ 4221 strings out of 492649
+ 61292 string characters out of 6129622
+ 122423 words of memory out of 5000000
+ 7955 multiletter control sequences out of 15000+600000
  41020 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,9n,37p,689b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -555,7 +562,7 @@ msfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmtt9.pfb>
-Output written on FinaldeR3.pdf (7 pages, 732064 bytes).
+Output written on FinaldeR3.pdf (7 pages, 732276 bytes).
 PDF statistics:
  119 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
