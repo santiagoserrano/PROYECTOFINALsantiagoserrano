@@ -213,8 +213,6 @@ LinRegB = lm(IDH ~ ., data = colb[,c(1,7:8)])
 stargazer(LinRegA,LinRegB,title="Modelos de Regresion",label="regresiones")
 @
 
-
-
 \clearpage
 
 \section{Exploraci\'on Espacial}
@@ -298,11 +296,6 @@ aggregate(mapCol_idh@data[,c(10,11,12)],
 
 @
 
-
-
-
-
-
 \begin{figure}[h]
 \centering
 
@@ -334,6 +327,7 @@ legend('left', legend = c("LOW","UP","MEDIUM"),
 \renewcommand{\refname}{Bibliografia}
 \bibliography{bibliografia}
 \cite{bibliografia}
+
 
 
 \end{document}
